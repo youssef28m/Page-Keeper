@@ -1,0 +1,7 @@
+# Ignore .env files (environment variables)
+.env
+.env.development
+.env.production
+
+
+node_modules/
