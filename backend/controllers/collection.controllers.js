@@ -113,5 +113,32 @@ export const updateCollection = async (req, res) => {
       error: process.env.NODE_ENV === "development" ? error.message : undefined,
     });
   }
-};
+}
 
+export const deleteCollection = async (req, res) => {
+  try {
+    const {id} = req.params;
+
+    const result = await Collection.deleteOne({ _id: id }); // Rename variable for clarity
+
+    if (result.deletedCount === 0) { 
+      return res.status(404).json({ 
+        success: false,
+        message: "Collection not found",
+      });
+    }
+
+    res.status(200).json({
+      success :true,
+      message: "collection deleted succesfully"
+    })
+
+  } catch(error) {
+    console.error("Error deleting collection:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error occurred while deleting collection",
+      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+    });
+  }
+}

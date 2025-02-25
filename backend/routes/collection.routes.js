@@ -1,6 +1,6 @@
 
 import express from "express";
-import {getCollectionById, createCollection, getCollections ,updateCollection} from "../controllers/collection.controllers.js";
+import {getCollectionById, createCollection, getCollections, deleteCollection ,updateCollection} from "../controllers/collection.controllers.js";
 import { validateObjectId } from "../middleware/validationMiddleware.js";
 
 
@@ -14,9 +14,7 @@ collectionRouter.post("/", createCollection);
 
 collectionRouter.put("/:id",validateObjectId, updateCollection)
 
-collectionRouter.delete("/:id", (req, res) => {   
-    res.send("delete collection");  
-});
+collectionRouter.delete("/:id",validateObjectId, deleteCollection);
 
 export default collectionRouter;
 

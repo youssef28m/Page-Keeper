@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useCollections } from "../api/useCollection";
 
 export default function CreateCollection({ setCreatingCollection }) {
   
   const [collectionTitle, setCollectionTitle] = useState('')  
+  const {addCollection, fetchCollections} = useCollections()
 
   const handleChange = (event) => {
     setCollectionTitle(event.target.value); 
@@ -12,6 +14,8 @@ export default function CreateCollection({ setCreatingCollection }) {
         if (event.key === "Enter" && event.target.value.trim() !== "") {
           event.preventDefault(); 
           setCreatingCollection(false);
+          addCollection({title: event.target.value})
+          fetchCollections();
         }
       };
     

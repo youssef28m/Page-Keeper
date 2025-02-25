@@ -1,28 +1,30 @@
-import { useState } from 'react'
-<<<<<<< HEAD
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-=======
->>>>>>> aafc782 (2)
-import Navbar from './components/Navbar'
+import { useEffect, useState } from 'react'
 
-const collections = ["programming" , "courses", "cyber securtiy"]
+
+import Navbar from './components/Navbar'
+import { useCollections } from './api/useCollection';
+import Loading from './components/loading';
+
 
 function App() {
   const [creatingCollection, setCreatingCollection] = useState(false);
-<<<<<<< HEAD
-=======
   const [selectedCollection, setSelectedCollection] = useState('');
->>>>>>> aafc782 (2)
+  const {fetchCollections, collections, loading, fetchError} = useCollections()
+
+  useEffect(() => {
+    fetchCollections();
+  }, []);
+
+  if (loading) return <Loading />
+
 
   return (
     <>
       <main onClick={() => setCreatingCollection(false)} className='w-full flex'>
-<<<<<<< HEAD
+
         <Navbar collections={collections} creatingCollection={creatingCollection} setCreatingCollection={setCreatingCollection} />
-=======
+
         <Navbar setSelectedCollection={setSelectedCollection} collections={collections} creatingCollection={creatingCollection} setCreatingCollection={setCreatingCollection} />
->>>>>>> aafc782 (2)
         <div className='ml-72 w-full h-200'>this</div>
       </main>
     
